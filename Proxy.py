@@ -152,7 +152,7 @@ while True:
       # originServerRequest is the first line in the request and
       # originServerRequestHeader is the second line in the request
       # ~~~~ INSERT CODE ~~~~
-      originServerSocket = "GET {} HTTP/1.1".format(resource)
+      originServerRequest = "GET {} HTTP/1.1".format(resource)
       originServerRequestHeader = "HOST: {}".format(hostname)
       # ~~~~ END CODE INSERT ~~~~
 
