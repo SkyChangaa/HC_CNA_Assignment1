@@ -20,6 +20,7 @@ proxyPort = int(args.port)
 try:
   # Create a server socket
   # ~~~~ INSERT CODE ~~~~
+  server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM) # Create the server socket
   # ~~~~ END CODE INSERT ~~~~
   print ('Created socket')
 except:
