@@ -47,6 +47,8 @@ except:
   print ('Failed to listen')
   sys.exit()
 
+# tested for initialization proxy server socket, binding to port and listening for connections
+
 # continuously accept connections
 while True:
   print ('Waiting for connection...')
