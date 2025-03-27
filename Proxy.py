@@ -30,7 +30,7 @@ except:
 try:
   # Bind the the server socket to a host and port
   # ~~~~ INSERT CODE ~~~~
-  server_socket.bind((proxyHost, proxyPort)) #Bind host and port
+  server_socket.bind((proxyHost, proxyPort)) # Bind host and port
   # ~~~~ END CODE INSERT ~~~~
   print ('Port is bound')
 except:
@@ -40,6 +40,7 @@ except:
 try:
   # Listen on the server socket
   # ~~~~ INSERT CODE ~~~~
+  server_socket.listen(5) # Set socket to listen
   # ~~~~ END CODE INSERT ~~~~
   print ('Listening to socket')
 except:
