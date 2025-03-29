@@ -123,7 +123,14 @@ while True:
 
     # Get last modified timestamp of the cached file
     last_modified = os.path.getmtime(cacheLocation)
-  
+    # Calculate how long the file has been cached
+    cache_lifetime = time.time() - last_modified
+    print(f"Cache age: {int(cache_lifetime)} seconds")
+
+    # Cache is invalid if expired
+    if max_age_seconds is not None and cache_lifetime >= max_age_seconds:
+        print("Cache expired")
+        raise Exception("Expired cache Error")
 
     print ('Cache hit! Loading from cache file: ' + cacheLocation)
     # ProxyServer finds a cache hit
