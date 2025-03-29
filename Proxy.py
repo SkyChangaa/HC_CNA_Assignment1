@@ -115,6 +115,15 @@ while True:
     # Check wether the file is currently in the cache
     cacheFile = open(cacheLocation, "r")
     cacheData = cacheFile.readlines()
+    cacheStr = ''.join(cacheData)
+
+    # Extract the max-age value from Cache-Control header
+    cacheMatch = re.search(r'Cache-Control:.*?max-age=(\d+)', cacheStr, re.IGNORECASE)
+    max_age_seconds = int(cacheMatch.group(1)) if cacheMatch else None
+
+    # Get last modified timestamp of the cached file
+    last_modified = os.path.getmtime(cacheLocation)
+  
 
     print ('Cache hit! Loading from cache file: ' + cacheLocation)
     # ProxyServer finds a cache hit
