@@ -4,6 +4,7 @@ import sys
 import os
 import argparse
 import re
+import time
 
 # 1MB buffer size
 BUFFER_SIZE = 1000000
@@ -141,7 +142,11 @@ while True:
     # ~~~~ END CODE INSERT ~~~~
     cacheFile.close()
     print ('Sent to the client:')
-    print ('> ' + cacheData)
+    
+    # update the printing method
+    for i in cacheStr:
+      print ('> ' + cacheStr)
+  
   except:
     # cache miss.  Get resource from origin server
     originServerSocket = None
