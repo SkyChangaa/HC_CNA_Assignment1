@@ -202,8 +202,16 @@ while True:
       # ~~~~ INSERT CODE ~~~~
       clientSocket.sendall(originResponse)
       # ~~~~ END CODE INSERT ~~~~
-
+      
+      # Decode the response from bytes to string 
+      responseText = originResponse.decode('ISO-8859-1')
+      # Extract the HTTP status line
+      status_line = responseText.split('\r\n')[0]
+      # Extract the status code from the status line
+      status_code = int(status_line.split()[1])
+      
       # Create a new file in the cache for the requested file.
+      
       cacheDir, file = os.path.split(cacheLocation)
       print ('cached directory ' + cacheDir)
       if not os.path.exists(cacheDir):
