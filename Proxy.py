@@ -209,21 +209,24 @@ while True:
       status_line = responseText.split('\r\n')[0]
       # Extract the status code from the status line
       status_code = int(status_line.split()[1])
-      
-      # Create a new file in the cache for the requested file.
-      
-      cacheDir, file = os.path.split(cacheLocation)
-      print ('cached directory ' + cacheDir)
-      if not os.path.exists(cacheDir):
-        os.makedirs(cacheDir)
-      cacheFile = open(cacheLocation, 'wb')
 
-      # Save origin server response in the cache file
-      # ~~~~ INSERT CODE ~~~~
-      cacheFile.write(originResponse)
-      # ~~~~ END CODE INSERT ~~~~
-      cacheFile.close()
-      print ('cache file closed')
+      cacheNotStore = re.search(r'Cache-Control:\s*no-store', responseText, re.IGNORECASE)
+      
+      should_cache = not cacheNotStore
+      # Create a new file in the cache for the requested file.
+      if should_cache:
+        cacheDir, file = os.path.split(cacheLocation)
+        print ('cached directory ' + cacheDir)
+        if not os.path.exists(cacheDir):
+          os.makedirs(cacheDir)
+        cacheFile = open(cacheLocation, 'wb')
+
+        # Save origin server response in the cache file
+        # ~~~~ INSERT CODE ~~~~
+        cacheFile.write(originResponse)
+        # ~~~~ END CODE INSERT ~~~~
+        cacheFile.close()
+        print ('cache file closed')
 
       # finished communicating with origin server - shutdown socket writes
       print ('origin response received. Closing sockets')
