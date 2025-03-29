@@ -108,6 +108,7 @@ while True:
     cacheLocation = './' + hostname + resource
     if cacheLocation.endswith('/'):
         cacheLocation = cacheLocation + 'default'
+  
 
     print ('Cache location:\t\t' + cacheLocation)
 
